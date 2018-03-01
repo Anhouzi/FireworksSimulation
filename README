@@ -1,4 +1,5 @@
-My first program using OpenGL with C++. This a simple project that creates a fireworks show in a small window. Press Q to add more fireworks to it.
+My first program using OpenGL with C++. This a simple project that creates a fireworks show in a small window. 
+Press Q to add more fireworks to the screen.
 
 Project Controls:
   WASD - Moves the camera.
