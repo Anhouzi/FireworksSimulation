@@ -1,3 +1,5 @@
+My first program using OpenGL with C++. This a simple project that creates a fireworks show in a small window. Press Q to add more fireworks to it.
+
 Project Controls:
   WASD - Moves the camera.
   Mouse - Move the mouse to change the direction that the camera faces.
