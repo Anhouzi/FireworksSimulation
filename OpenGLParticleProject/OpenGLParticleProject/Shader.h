@@ -6,9 +6,9 @@
 #define SHADER_H
 
 #define GLEW_STATIC
-#include <glm/glm/glm.hpp>
-#include <glm/glm/gtc/matrix_transform.hpp>
-#include <glm/glm/gtc/type_ptr.hpp>
+#include <../glm-0.9.9-a2/glm/glm.hpp>
+#include <../glm-0.9.9-a2/glm/gtc/matrix_transform.hpp>
+#include <../glm-0.9.9-a2/glm/gtc/type_ptr.hpp>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <string>

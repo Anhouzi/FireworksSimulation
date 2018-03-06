@@ -23,8 +23,6 @@ const float CAMERA_FRUSTUM_NEAR = 0.1f;
 const float CAMERA_FRUSTUM_FAR = 100.0f;
 const glm::vec3 CAMERA_HOME_POSITION = glm::vec3(0.0f, 0.0f, 3.0f);
 
-
-
 class ParticleProject
 {
 private:
