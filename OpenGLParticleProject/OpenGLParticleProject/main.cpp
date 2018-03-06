@@ -30,10 +30,13 @@
 		- Due to some restrictions with OpenGL and member functions, some of the variables required to operate the camera 
 		were forced to be global variables. While it's fine for a private project like this, it's common knowledge that 
 		global variables are not safe to use in larger applications. */
+
+class ParticleProject;
+
 void main()
 {
 	srand(time(NULL));
-	ParticleProject* project = new ParticleProject(800, 600);
+	ParticleProject* project = new ParticleProject(WINDOW_WIDTH, WINDOW_HEIGHT);
 	project->RunProject();
 	return;
 }

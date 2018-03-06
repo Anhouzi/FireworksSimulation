@@ -56,8 +56,8 @@ public:
 		Yaw = yaw;
 		Pitch = pitch;
 		updateCameraVectors();
-		//std::cout << MovementSpeed << std::endl;
 	}
+
 	// Constructor with scalar values
 	Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch) : 
 		Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVTY), Zoom(ZOOM)
@@ -68,6 +68,7 @@ public:
 		Pitch = pitch;
 		updateCameraVectors();
 	}
+
 	// Returns the view matrix calculated using Eular Angles and the LookAt Matrix
 	glm::mat4 GetViewMatrix()
 	{
@@ -79,7 +80,6 @@ public:
 	void ProcessKeyboard(Camera_Movement direction, float deltaTime)
 	{
 		float velocity = MovementSpeed * deltaTime;
-		//std::cout << "Velocity: " << velocity << std::endl;
 		if (direction == FORWARD)
 			Position += Front * velocity;
 		if (direction == BACKWARD)
@@ -91,14 +91,13 @@ public:
 	}
 
 	// Processes input received from a mouse input system. Expects the offset value in both the x and y direction.
-	void ProcessMouseMovement(float xoffset, float yoffset, bool constrainPitch = true)
+	void ProcessMouseMovement(float xOffset, float yOffset, bool constrainPitch = true)
 	{
-		xoffset *= MouseSensitivity;
-		yoffset *= MouseSensitivity;
+		xOffset *= MouseSensitivity;
+		yOffset *= MouseSensitivity;
 
-		Yaw += xoffset;
-		Pitch += yoffset;
-		//std::cout << Yaw << " - " << Pitch << std::endl;
+		Yaw += xOffset;
+		Pitch += yOffset;
 		// Make sure that when pitch is out of bounds, screen doesn't get flipped
 		if (constrainPitch)
 		{
@@ -113,10 +112,12 @@ public:
 	}
 
 	// Processes input received from a mouse scroll-wheel event. Only requires input on the vertical wheel-axis
-	void ProcessMouseScroll(float yoffset)
+	void ProcessMouseScroll(float yOffset)
 	{
 		if (Zoom >= 1.0f && Zoom <= 45.0f)
-			Zoom -= yoffset;
+			Zoom -= yOffset;
+		
+		//Constrain the zoom to a value between 1 and 45. 
 		if (Zoom <= 1.0f)
 			Zoom = 1.0f;
 		if (Zoom >= 45.0f)
