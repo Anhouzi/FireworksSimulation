@@ -13,11 +13,11 @@ Particle::Particle(glm::vec3 _origin, float _lifetime)
 {
 	lifetime = _lifetime;
 	particlePosition = _origin;
-	setMovementVector(glm::vec3(0.0f, 0.0f, 0.0f)); //Initialize to be still.
+	SetMovementVector(glm::vec3(0.0f, 0.0f, 0.0f)); //Initialize to be still.
 }
 
 //We get a directional vector than adjust the vector's magnitude before giving it to the particle. 
-void Particle::setMovementVector(glm::vec3 inputVector)
+void Particle::SetMovementVector(glm::vec3 inputVector)
 {
 	glm::vec3 vec;
 	//Higher values mean smaller radii for explosions.

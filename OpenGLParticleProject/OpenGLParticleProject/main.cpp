@@ -13,9 +13,9 @@
 	for the user to enjoy.*/
 
 /* Project Post-Mortem: 
-	While I full acknowledge that there is plenty more for me to do here, I currently lack the experience to add 
-	more advanced features in a reasonable time frame. A few of these features include:
-		- Trails that rockets and individual particles might leave behind. 
+	There is plenty more for me to do here, when I find the time to resume this project. 
+	A few such features include:
+		- Trails that rockets and individual particles might leave behind while in motion. 
 		- Better application performance in the form of either fewer draw calls or update functions. 
 		- More types of explosions for a more varied display. 
 

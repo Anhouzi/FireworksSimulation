@@ -26,13 +26,13 @@ const glm::vec3 CAMERA_HOME_POSITION = glm::vec3(0.0f, 0.0f, 3.0f);
 class ParticleProject
 {
 private:
-	unsigned int ScreenWidth, ScreenHeight;
+	unsigned int windowWidth, windowHeight;
 
 public:
 	GLFWwindow* ourWindow;
 	Shader ourShader;
 	std::vector<ParticleSystem*> sys;
-	unsigned int VBO, VAO, EBO;
+	unsigned int VBO, VAO;
 	void processInput(GLFWwindow * window, float deltaTime);
 
 	// timing
@@ -40,11 +40,11 @@ public:
 	float lastFrame = 0.0f;
 	
 	ParticleProject();
-	ParticleProject(unsigned int ScreenWidth, unsigned int ScreenHeight);
+	ParticleProject(unsigned int windowWidth, unsigned int windowHeight);
 	int RunProject();
 };
 
 
-void framebufferSizeCallback(GLFWwindow* window, int width, int height);
-void mouseCallback(GLFWwindow* window, double xpos, double ypos);
-void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+void FramebufferSizeCallback(GLFWwindow* window, int width, int height);
+void MouseCallback(GLFWwindow* window, double xpos, double ypos);
+void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);

@@ -13,6 +13,6 @@ public:
 	glm::vec3 movementVector;
 	Particle();
 	Particle(glm::vec3 _origin, float _lifetime);
-	void setMovementVector(glm::vec3 _movementVector);
+	void SetMovementVector(glm::vec3 _movementVector);
 	glm::vec3 ParticleUpdate(float deltaTime);
 };

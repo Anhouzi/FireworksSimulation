@@ -125,13 +125,13 @@ void ParticleSystem::Pop()
 			//Change the particles attributes to be the rocket's position at the time of the explosion. 
 			particleArray[i]->particlePosition = systemPosition;
 			particleArray[i]->lifetime = LIFESPAN_DEFAULT;
-			particleArray[i]->setMovementVector(vec);
+			particleArray[i]->SetMovementVector(vec);
 		}
 		//If the particles haven't been created yet, we need to make them. 
 		else
 		{
 			particleArray[i] = new Particle(systemPosition, LIFESPAN_DEFAULT);
-			particleArray[i]->setMovementVector(vec);
+			particleArray[i]->SetMovementVector(vec);
 		}
 
 	}

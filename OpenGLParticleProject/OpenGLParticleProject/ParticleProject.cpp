@@ -18,7 +18,7 @@ ParticleProject::ParticleProject()
 }
 
 //Constructor for the project. Sets up most of the resources for the rest of the program including the window itself.
-ParticleProject::ParticleProject(unsigned int _ScreenWidth, unsigned int _ScreenHeight)
+ParticleProject::ParticleProject(unsigned int widthIn, unsigned int heightIn)
 {
 	// Initialize and configure
 	glfwInit();
@@ -31,18 +31,18 @@ ParticleProject::ParticleProject(unsigned int _ScreenWidth, unsigned int _Screen
 	#endif
 
 	// Window creation
-	ScreenWidth = _ScreenWidth;
-	ScreenHeight = _ScreenHeight;
-	ourWindow = glfwCreateWindow(ScreenWidth, ScreenHeight, "Particle Project", NULL, NULL);
+	windowWidth = widthIn;
+	windowHeight = heightIn;
+	ourWindow = glfwCreateWindow(windowWidth, windowHeight, "Particle Project", NULL, NULL);
 	if (ourWindow == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
 	}
 	glfwMakeContextCurrent(ourWindow);
-	glfwSetFramebufferSizeCallback(ourWindow, framebufferSizeCallback);
-	glfwSetCursorPosCallback(ourWindow, mouseCallback);
-	glfwSetScrollCallback(ourWindow, scrollCallback);
+	glfwSetFramebufferSizeCallback(ourWindow, FramebufferSizeCallback);
+	glfwSetCursorPosCallback(ourWindow, MouseCallback);
+	glfwSetScrollCallback(ourWindow, ScrollCallback);
 
 	//Tell GLFW to capture the mouse
 	glfwSetInputMode(ourWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -53,7 +53,7 @@ ParticleProject::ParticleProject(unsigned int _ScreenWidth, unsigned int _Screen
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	ourShader = Shader ("Version0.vs", "Version0.fs"); 
+	ourShader = Shader ("../Resources/Version0.vs", "../Resources/Version0.fs"); 
 	
 	ParticleSystem* testSys = new ParticleSystem();
 	
@@ -104,7 +104,7 @@ int ParticleProject::RunProject()
 		ourShader.use();		
 
 		// pass projection matrix to shader (note that in this case it could change every frame)
-		glm::mat4 projection = glm::perspective(glm::radians(ourCamera.Zoom), (float)ScreenWidth / (float)ScreenHeight, 
+		glm::mat4 projection = glm::perspective(glm::radians(ourCamera.zoom), (float)windowWidth / (float)windowHeight,
 			CAMERA_FRUSTUM_NEAR, CAMERA_FRUSTUM_FAR);
 		ourShader.setMat4("projection", projection);
 		glm::mat4 view = ourCamera.GetViewMatrix();
@@ -134,10 +134,10 @@ int ParticleProject::RunProject()
 				for (unsigned int j = 0; j < PARTICLE_ARRAY_SIZE_MAX; j++)
 				{
 					//The string stream allows us to dynamically update the vertex shader's offset array for each particle.
-					std::stringstream ss;
+					std::stringstream stringStream;
 					std::string index;
-					ss << j;
-					index = ss.str();
+					stringStream << j;
+					index = stringStream.str();
 					ourShader.setVec3(("offsets[" + index + "]").c_str(), sys[i]->particleArray[j]->particlePosition);
 					ourShader.setVec3("pColor", sys[i]->colorVector);
 					ourShader.setFloat("lifetime", sys[i]->particleArray[j]->lifetime);
@@ -218,12 +218,12 @@ void ParticleProject::processInput(GLFWwindow *window, float deltaTime)
 	}		
 }
 
-void framebufferSizeCallback(GLFWwindow* window, int width, int height)
+void FramebufferSizeCallback(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
 }
 
-void mouseCallback(GLFWwindow * window, double xpos, double ypos)
+void MouseCallback(GLFWwindow * window, double xpos, double ypos)
 {
 	if (firstMouse)
 	{
@@ -242,7 +242,7 @@ void mouseCallback(GLFWwindow * window, double xpos, double ypos)
 }
 
 // Whenever the mouse scroll wheel scrolls, this callback is called
-void scrollCallback(GLFWwindow* window, double xoffset, double yoffset)
+void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
 {
 	ourCamera.ProcessMouseScroll(yoffset);
 }
