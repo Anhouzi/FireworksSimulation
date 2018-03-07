@@ -35,7 +35,7 @@ class ParticleProject;
 
 void main()
 {
-	srand(time(NULL));
+	srand((unsigned int)glfwGetTime());
 	ParticleProject* project = new ParticleProject(WINDOW_WIDTH, WINDOW_HEIGHT);
 	project->RunProject();
 	return;

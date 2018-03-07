@@ -87,14 +87,14 @@ int ParticleProject::RunProject()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// Calculate frame timings 
-		float currentFrame = glfwGetTime();
+		float currentFrame = (float)glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 
 		processInput(ourWindow, deltaTime);
 
 		//Update all particle systems.
-		for (int i = 0; i < sys.size(); ++i)
+		for (unsigned int i = 0; i < sys.size(); ++i)
 		{
 			sys[i]->ParticleSystemUpdate(deltaTime);
 		}
@@ -112,7 +112,7 @@ int ParticleProject::RunProject()
 		glm::mat4 model = glm::mat4(1.0f);
 	
 		//Loop through all existing particle systems and run them.
-		for (int i = 0; i < sys.size(); ++i)
+		for (unsigned int i = 0; i < sys.size(); ++i)
 		{
 			//If the rocket hasn't exploded, we will draw the rocket
 			if (!sys[i]->isOn)
@@ -227,22 +227,22 @@ void MouseCallback(GLFWwindow * window, double xpos, double ypos)
 {
 	if (firstMouse)
 	{
-		lastX = xpos;
-		lastY = ypos;
+		lastX = (float)xpos;
+		lastY = (float)ypos;
 		firstMouse = false;
 	}
 
-	float xOffset = xpos - lastX;
-	float yOffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+	float xOffset = (float)xpos - lastX;
+	float yOffset = lastY - (float)ypos; // reversed since y-coordinates go from bottom to top
 
-	lastX = xpos;
-	lastY = ypos;
+	lastX = (float)xpos;
+	lastY = (float)ypos;
 
-	ourCamera.ProcessMouseMovement(xOffset, yOffset);
+	ourCamera.ProcessMouseMovement(xOffset, yOffset); 
 }
 
 // Whenever the mouse scroll wheel scrolls, this callback is called
 void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
 {
-	ourCamera.ProcessMouseScroll(yoffset);
+	ourCamera.ProcessMouseScroll((float)yoffset);
 }
